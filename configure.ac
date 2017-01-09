@@ -125,7 +125,7 @@ openssl)
 esac
 
 AC_ARG_WITH([tpm2],
-	AC_HELP_STRING([--wih-tpm2],
+	AC_HELP_STRING([--with-tpm2],
                        [build libtpms with TPM2 support (experimental)]),
         AC_MSG_RESULT([Building with TPM2 support])
         #if test "x$cryptolib" = "xfreebl"; then
