@@ -112,7 +112,7 @@ ExecuteCommand(
     TPM_ST               tag;               // these first three variables are the
     UINT32               commandSize;
     TPM_CC               commandCode = 0;
-    COMMAND_INDEX        commandIndex;      /* This is the index for the command
+    COMMAND_INDEX        commandIndex = 0;  /* This is the index for the command
 					       in the various data tables. */
     
     BYTE                *parmBufferStart;   /* pointer to the first byte of an optional parameter
