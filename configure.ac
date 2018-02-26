@@ -177,6 +177,14 @@ if test "$test_CFLAGS" != set; then
   CFLAGS="$CFLAGS -Wall -Werror -Wreturn-type -Wsign-compare"
 fi
 
+AC_MSG_ERROR([
+
+*** Support for this branch has ended.
+*** Please use swtpm's tpm2-preview.v2 and libtpms's tpm2-preview.rev146.v2
+*** or later branch.
+*** Sice the format of the TPM 2 state has changed, please remove all TPM 2
+*** state files tpm2-00.permall and tpm2-00.volatilestate.])
+
 AC_CONFIG_FILES(Makefile                   \
 		dist/libtpms.spec          \
 		include/Makefile           \
