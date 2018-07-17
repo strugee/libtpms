@@ -9,6 +9,8 @@ extern BYTE s_indexOrderlyRam[RAM_INDEX_SPACE];
 
 int main(void)
 {
+    int ret = 0;
+
     /* ensure that the NVRAM offset of NV_USER_DYNAMIC is at the expected
        location so that there's enough memory for re-constructing NVRAM
        indices etc. into the NVRAM */
@@ -22,7 +24,7 @@ int main(void)
         fprintf(stderr,
                 "NV_INDEX_RAM_DATA not at expected offset %u but at %u\n",
                  NV_INDEX_RAM_DATA_EXP_OFFSET, (unsigned int)NV_INDEX_RAM_DATA);
-        return EXIT_FAILURE;
+        ret = EXIT_FAILURE;
     }
 
 #define NV_USER_DYNAMIC_EXP_OFFSET (5120 + 512)
@@ -30,7 +32,7 @@ int main(void)
         fprintf(stderr,
                 "NV_USER_DYNAMIC not at expected offset %u but at %u\n",
                 NV_USER_DYNAMIC_EXP_OFFSET, (unsigned int)NV_USER_DYNAMIC);
-        return EXIT_FAILURE;
+        ret = EXIT_FAILURE;
     }
 
     /*
@@ -38,21 +40,21 @@ int main(void)
      * size of the OBJECT is the same on all architectures so that a full
      * NVRAM fits on all architectures
      */
-#define OBJECT_EXP_SIZE 1896
+#define OBJECT_EXP_SIZE 2056
     if (sizeof(OBJECT) != OBJECT_EXP_SIZE) {
         fprintf(stderr, "sizeof(OBJECT) does not have expected size of %u bytes"
                         "but %zu bytes\n", OBJECT_EXP_SIZE, sizeof(OBJECT));
-        return EXIT_FAILURE;
+        ret = EXIT_FAILURE;
     }
 
     /* Same for NV_INDEX */
-#define NV_INDEX_EXP_SIZE 148
+#define NV_INDEX_EXP_SIZE 212
     if (sizeof(NV_INDEX) != NV_INDEX_EXP_SIZE) {
         fprintf(stderr,
                 "sizeof(NV_INDEX) does not have expected size of %u bytes"
                 "but %zu bytes\n", NV_INDEX_EXP_SIZE, sizeof(NV_INDEX));
-        return EXIT_FAILURE;
+        ret = EXIT_FAILURE;
     }
 
-    return EXIT_SUCCESS;
+    return ret;
 }

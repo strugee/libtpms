@@ -935,6 +935,10 @@ typedef union {
 #ifdef      TPM_ALG_SM3_256
     BYTE                    sm3_256[SM3_256_DIGEST_SIZE];
 #endif   // TPM_ALG_SM3_256
+    /* libtpms: We need a fixed size of this structure otherwise data structures
+       OBJECT and TPM_NV_INDEX, which are written into NVRAM, may expand due to
+       them including this structure. */
+    BYTE                    largest[96];
 } TPMU_HA;
 /* Table 2:72 - Definition of TPMT_HA Structure  */
 typedef struct {
